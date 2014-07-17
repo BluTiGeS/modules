@@ -2,6 +2,7 @@ var legal = {
     paymentChosen: '',
     
     tosApproved: false,
+	tosOwnApproved: false,
     revocationTermsApproved: true,
     
     init: function(){
@@ -34,6 +35,11 @@ var legal = {
 	
 	$(document).on('change', '#cgv', function(){
 	    legal.tosApproved = $(this).is(':checked');
+	    legal.updateConfirmButton();
+	});
+	
+	$(document).on('change', '#cgvOWN', function(){
+	    legal.tosOwnApproved = $(this).is(':checked');
 	    legal.updateConfirmButton();
 	});
 	
@@ -132,7 +138,7 @@ var legal = {
     },
     
     updateConfirmButton: function() {
-	if (this.paymentChosen && this.tosApproved && this.revocationTermsApproved) {
+	if (this.paymentChosen && this.tosApproved && this.revocationTermsApproved && this.tosOwnApproved) {
 	    $('#confirmOrder').removeAttr('disabled');
 	}
 	else {

@@ -82,6 +82,10 @@
 							   <label>{l s='and'  mod='eu_legal'}</label> <a href="{$LEGAL_CMS_ID_REVOCATION_LINK}" class="iframe">{l s='terms of revocation' mod='eu_legal'}</a> {l s='adhire to them unconditionally.'  mod='eu_legal'}
 							{/if}
 						</p>
+						<p class="checkbox">
+							<input type="checkbox" name="cgvOWN" id="cgvOWN" value="1"/>
+							 <label for="cgvOWN">{l s='Hiermit bestätige ich ausdrücklich, dass ich über das mir zustehende Widerrufsrecht belehrt wude. Ich bin damit einverstanden, dass mir das/die Plotterdateien vor Ablauf der Wiederrufsfrist übermittelt werden. Weiterhin ist mir bewusst, das mit der Ausführung des Kaufvertrages das Widerrufsrecht erlischt ' mod='eu_legal'} </label>
+						</p>
 					</div>
 					{if $is_partially_virtual}
 					<div {if !$opc}style="display:none" data-show-if-js{/if}>
