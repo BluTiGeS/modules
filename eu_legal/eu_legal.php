@@ -2,11 +2,11 @@
 
 /**
 * EU Legal
-* Better security for german merchants.
+* Better security for German and EU merchants.
 * 
-* @version       : 1.0.0
-* @date          : 2014 07 04
-* @author        : Markus Engel/Chris Gurk @ Onlineshop-Module.de | George June @ Silbersaiten.de
+* @version       : 1.0.1
+* @date          : 2014 07 28
+* @author        : Markus Engel/Chris Gurk @ Onlineshop-Module.de | George June/Alexey Dermenzhy @ Silbersaiten.de
 * @copyright     : 2014 Onlineshop-Module.de | 2014 Silbersaiten.de
 * @contact       : info@onlineshop-module.de | info@silbersaiten.de
 * @homepage      : www.onlineshop-module.de | www.silbersaiten.de
@@ -59,7 +59,7 @@ class EU_Legal extends Module {
 		$this->tab = 'administration';       
 	 	
 		// version: major, minor, bugfix
-		$this->version = '1.0.0';                
+		$this->version = '1.0.1';                
 		
 		// author
 		$this->author = 'EU Legal Team'; 
@@ -1879,6 +1879,11 @@ class EU_Legal extends Module {
 		{
 			$this->context->controller->addJS(_PS_JS_DIR_.'jquery/plugins/fancybox/jquery.fancybox.js');	
 			$this->context->controller->addCSS(_PS_JS_DIR_.'jquery/plugins/fancybox/jquery.fancybox.css', 'all');
+		
+			$this->smarty->assign(array(
+				'show_fancy'            => Configuration::get('LEGAL_SHOW_FANCY')
+			));
+			return $this->display(__FILE__, 'displayTop.tpl');
 		}
 	} 
 	
@@ -1982,7 +1987,7 @@ class EU_Legal extends Module {
 		$cms = new CMS(Configuration::get('LEGAL_CMS_ID_SHIPPING'));
 		
 		if (Validate::isLoadedObject($cms)) {
-		    $shipping_link = $this->context->link->getCMSLink($cms);
+		    $shipping_link = $this->context->link->getCMSLink($cms, null, Configuration::get('PS_SSL_ENABLED'));
 
 		    if ( ! strpos($shipping_link, '?')) {
 			$shipping_link.= '?content_only=1';
